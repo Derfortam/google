@@ -1,0 +1,39 @@
+@use "sass:math";
+@import "scssComp/reset.scss";
+@import "scssComp/func.scss";
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+Myanmar:regular,500,600&display=swap");
+@font-face {
+   font-family: "Google Sans";
+   src: url("./fonts/GoogleSans-Regular.woff2") format("woff2"), url("./fonts/GoogleSans-Regular.woff") format("woff");
+   font-weight: 400;
+}
+.wrapper {
+   overflow: clip;
+   display: flex;
+   flex-direction: column;
+   min-height: 100%;
+}
+.wrapper main {
+   flex-grow: 1;
+}
+[class*="__container"] {
+   max-width: toRem(1320);
+   margin: 0 auto;
+   padding: 0 toRem(15);
+}
+body {
+   padding: toRem(48) 0;
+   background-color: #1e1f20;
+   //    font-family: #fff;
+   color: #e3e3e3;
+   font-family: "Google Sans", "Noto Sans Myanmar", sans-serif;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   @media (max-width: toEm(1040)) {
+      background-color: #0c0d0d;
+      padding: 0;
+   }
+}
+
+@import "./App.scss";

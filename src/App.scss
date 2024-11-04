@@ -1,0 +1,402 @@
+@use "sass:math";
+@import "scssComp/func.scss";
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+Myanmar:regular,500,600&display=swap");
+@font-face {
+   font-family: "Google Sans";
+   src: url("./fonts/GoogleSans-Regular.woff2") format("woff2"), url("./fonts/GoogleSans-Regular.woff") format("woff");
+   font-weight: 400;
+}
+@import url("https://fonts.googleapis.com/css?family=Roboto:regular,500&display=swap");
+#root {
+   @media (max-width: toEm(1040)) {
+      // background-color: #0c0d0d;
+      // min-width: 100%;
+      // display: flex;
+      // flex-direction: column;
+      height: 100%;
+      // min-height: 100%;
+   }
+}
+.page {
+   @media (max-width: toEm(1040)) {
+      // height: 100%;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+   }
+}
+.block {
+   max-width: toRem(1040);
+   width: 100%;
+   min-width: toRem(1030);
+
+   @media (max-width: toEm(1040)) {
+      background-color: #0c0d0d;
+      min-width: 100%;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: space-between;
+      // min-height: 100%;
+      flex-grow: 1;
+   }
+
+   //    background-color: rgb(0, 0, 0);
+}
+.enter {
+   background-color: #0c0d0d;
+   padding: toRem(36);
+   border-radius: toRem(28);
+   min-height: toRem(404);
+   height: 100%;
+   width: 100%;
+
+   display: flex;
+   gap: toRem(20);
+   justify-content: space-between;
+   @media (max-width: toEm(1040)) {
+      // flex-grow: 1;
+      min-height: 100%;
+   }
+   @media (max-width: toEm(600)) {
+      flex-direction: column;
+   }
+   &__left {
+      &:last-child {
+         margin-bottom: 0;
+      }
+   }
+
+   &__logo {
+      max-width: toRem(40);
+      width: 100%;
+      aspect-ratio: 1 /1;
+      object-fit: cover;
+      margin-bottom: toRem(24);
+   }
+
+   &__title {
+      font-size: toRem(46);
+      font-family: "Google Sans", sans-serif;
+      font-weight: 400;
+      margin-bottom: toRem(16);
+   }
+
+   &__sub-title {
+      line-height: 1.5;
+      font-size: toRem(16);
+      font-weight: 400;
+      //   font-family: "Noto Sans Myanmar", sans-serif;
+      font-family: "Roboto";
+      &.mail {
+         display: inline-block;
+         padding: toRem(5) toRem(10);
+         border: 1px solid #c4c7c5;
+         border-radius: toRem(100);
+         font-size: toRem(14);
+         display: flex;
+         align-items: center;
+         gap: toRem(5);
+         &::before {
+            content: "";
+            width: toRem(20);
+            height: toRem(20);
+            border-radius: 50%;
+            background-color: #81c504;
+            color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+         }
+      }
+   }
+
+   &__right {
+      align-self: flex-end;
+      max-width: toRem(460);
+      // min-width: toRem(460);
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: toRem(40);
+   }
+
+   &__info-enter {
+      display: flex;
+      flex-direction: column;
+      gap: toRem(10);
+      align-items: flex-start;
+      margin-bottom: toRem(40);
+   }
+
+   &__input {
+      position: relative;
+      width: 100%;
+      min-width: 0;
+      // overflow: hidden;
+
+      input {
+         box-sizing: border-box;
+         width: 100%;
+         color: #c4c7c5;
+         background-color: transparent;
+         border-radius: toRem(4);
+         border: 1px solid #c4c7c5;
+         height: toRem(54);
+         padding: 0 toRem(15);
+         &:focus {
+            outline: none;
+            border: 2px solid #a8c7fa;
+         }
+      }
+      span {
+         position: absolute;
+         left: toRem(15);
+         top: 50%;
+         transform: translateY(-50%);
+         color: #c4c7c5;
+         font-size: toRem(16);
+         padding: toRem(5);
+         display: inline-block;
+         background-color: #0c0d0d;
+         transition: all 0.2s;
+         pointer-events: none;
+         white-space: nowrap; /* Запобігає переносу тексту */
+         overflow: hidden; /* Сховує переповнений текст */
+         text-overflow: ellipsis; /* Додає три крапки в кінці */
+         width: calc(100% - 200px); /* Встановлює ширину з урахуванням паддінга */
+         box-sizing: border-box;
+         @media (max-width: toEm(1040)) {
+            width: calc(100% - 80px);
+         }
+         @media (max-width: toEm(400)) {
+            width: calc(100% - 40px);
+         }
+      }
+      &.focus span {
+         top: 0;
+         font-size: toRem(12);
+         color: #a8c7fa;
+         width: auto;
+      }
+      &.focus input {
+         top: 0;
+         font-size: toRem(14);
+      }
+      &.focus-two span {
+         color: #e3e3e3;
+      }
+
+      &.error input {
+         border: 1px solid #f2b8b5;
+         &:focus {
+            outline: none;
+            border: 2px solid #f2b8b5;
+         }
+      }
+      // &.error span {
+      //    color: #f2b8b5;
+      // }
+
+      &.focus.error span {
+         color: #f2b8b5;
+      }
+   }
+
+   &__error {
+      color: #f2b8b5;
+      font-weight: 500;
+      font-family: "Roboto";
+      font-size: toRem(14);
+      display: none;
+      align-items: center;
+      gap: toRem(5);
+      &.error {
+         display: inline-flex;
+      }
+      svg {
+         flex-shrink: 0;
+      }
+   }
+
+   &__forget {
+      //   color: #0b57d0;
+      color: #a8c7fa;
+      font-weight: 500;
+      font-family: "Roboto";
+   }
+
+   &__help {
+      font-family: "Roboto";
+      font-size: toRem(14);
+      line-height: 1.5;
+      color: #c4c7c5;
+      a {
+         color: #a8c7fa;
+      }
+   }
+
+   &__buttons {
+      align-self: flex-end;
+      //   font-family: "Roboto";
+      font-size: toRem(16);
+      @media (max-width: toEm(400)) {
+         display: flex;
+         flex-direction: column-reverse;
+         gap: toRem(10);
+         align-items: center;
+         align-self: center;
+      }
+      button {
+         padding: toRem(15) toRem(25);
+         border-radius: toRem(100);
+         color: #abc5e8;
+         font-weight: 500;
+      }
+      .bg {
+         background-color: #abc5e8;
+         color: #0c0d0d;
+         padding: toRem(15) toRem(25);
+         border-radius: toRem(100);
+      }
+   }
+}
+
+.sub-info {
+   @media (max-width: toEm(1040)) {
+   }
+   padding: toRem(20);
+   font-family: "Roboto";
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   flex-wrap: wrap;
+   gap: toRem(20);
+   &__select {
+      position: relative;
+      select {
+         appearance: none;
+         background: none;
+         // padding-right: 10px;
+         padding: toRem(10) toRem(15);
+         padding-right: toRem(70);
+         border-radius: toRem(14);
+         background-color: transparent;
+         font-size: toRem(14);
+         color: #e3e3e3;
+
+         option {
+            padding: 0;
+            color: #0c0d0d;
+            // background-color: #0c0d0d;
+         }
+      }
+   }
+
+   &__arrows {
+      position: absolute;
+      top: 50%;
+      right: toRem(10);
+      transform: translateY(-50%);
+      width: toRem(10);
+      fill: #e3e3e3;
+      pointer-events: none;
+      // transform: rotate(180deg);
+   }
+
+   &__down-arrow {
+      // background-color: #e3e3e3;
+   }
+
+   &__up-arr {
+      // background-color: #e3e3e3;
+      display: none;
+   }
+
+   &__links {
+      padding-left: toRem(15);
+      display: flex;
+      align-items: center;
+      gap: toRem(30);
+      font-size: toRem(12);
+      color: #e3e3e3;
+      margin-right: toRem(15);
+   }
+
+   &__item-link {
+   }
+}
+
+.custom-input {
+   position: relative;
+   font-family: "Roboto";
+   &__block-checkbox {
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      position: relative;
+      gap: 10px;
+      cursor: pointer;
+      &::before {
+         width: 20px;
+         height: 20px;
+         flex-shrink: 0;
+         flex: 0 0 20px;
+         border-radius: 2px;
+         border: 2px solid #e3e3e3;
+         transition: background-color 0.3s;
+         content: "";
+      }
+      &::after {
+         content: "";
+         width: 5px;
+         height: 5px;
+         flex: 0 0 5px;
+         position: absolute;
+         left: 2px;
+         top: 2px;
+         color: #000;
+         font-size: toRem(40);
+         // background-color: #fff;
+         font-weight: 700;
+         font-size: 10px;
+         transform: translate(50%, 50%);
+      }
+   }
+   &__check {
+      fill: #00000000;
+      position: absolute;
+      left: toRem(2);
+      top: toRem(2);
+      width: toRem(16);
+      height: toRem(16);
+   }
+   &__body-check {
+      color: #fff;
+   }
+   &__checkbox {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      opacity: 0;
+      &:checked + .custom-input__block-checkbox::before {
+         background-color: #a8c7fa;
+         border: none;
+      }
+      &:checked + .custom-input__block-checkbox::after {
+         content: "";
+      }
+   }
+
+   &.text {
+      .custom-input__block-checkbox::before {
+         background-color: #a8c7fa;
+         border: none;
+      }
+      .custom-input__check {
+         fill: #000000;
+      }
+   }
+}

@@ -1,0 +1,10 @@
+// convert to rem from px
+@function toRem($n1, $n2: 16) {
+   $s: math.div($n1, $n2) + rem;
+   @return $s;
+}
+// convert to em from px
+@function toEm($n1, $n2: 16) {
+   $s: math.div($n1, $n2) + em;
+   @return $s;
+}
